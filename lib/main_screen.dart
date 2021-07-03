@@ -88,12 +88,6 @@ class MainScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50),
                         child: Image.asset('images/' + user.image,
                             width: 100, height: 100, fit: BoxFit.cover)),
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     shape: BoxShape.circle,
-                    //   ),
-                    //   child: ClipRRect(borderRadius: BorderRadius.circular(50),child: Image.asset('images/profile.png', width: 100, height: 100, fit: BoxFit.cover,),),
-                    // ),
                     Text(user.name, style: mainTextStyle),
                   ],
                 ),
@@ -183,7 +177,7 @@ class MainScreen extends StatelessWidget {
                 style: contentDrawerTitleTextStyle,
               ),
               trailing: Text(
-                user.galleries.toString(),
+                user.imgGalleries.length.toString(),
                 style: contentDrawerSubTitleTextStyle,
               ),
               onTap: () {
@@ -241,7 +235,10 @@ class MainScreen extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text('Template', style: subTextStyle),
+            SizedBox(height: 5),
             Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -253,51 +250,205 @@ class MainScreen extends StatelessWidget {
                   ]),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Stack(
-                    children: [
-                      findTemplate(user.template)
-                          ? Image.asset(
-                              'images/templates/' + imageTemplate,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.asset(
-                              'images/mail-invitation.png',
-                              fit: BoxFit.cover,
-                            ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      template = user.template;
+                      return MainTemplateScreen();
+                    })).then((value) {});
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Stack(
+                      children: [
+                        findTemplate(user.template)
+                            ? Image.asset(
+                                'images/templates/' + imageTemplate,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                'images/mail-invitation.png',
+                                fit: BoxFit.cover,
+                              ),
+                        Padding(
                           padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: Offset(0, 0),
-                                    blurRadius: 10,
-                                    color: Color.fromRGBO(38, 38, 38, 0.4))
-                              ]),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                          child: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                      offset: Offset(0, 0),
+                                      blurRadius: 10,
+                                      color: Color.fromRGBO(38, 38, 38, 0.4))
+                                ]),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  user.template,
+                                  style: subTextStyle,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Text('Value', style: subTextStyle),
+            SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(12.0),
+                      decoration: BoxDecoration(
+                          color: Colors.indigoAccent,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 20,
+                                offset: Offset(0, 0),
+                                color: Colors.indigoAccent)
+                          ]),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(12.0),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.indigo),
+                            child: Icon(
+                              Icons.people,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Guests',
+                            style: subTextStyle,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            user.guests.toString(),
+                            style: mainTextStyle,
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                user.template,
-                                style: mainTextStyle,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                'Template',
+                                'View all',
                                 style: contentTextStyle,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.ellipsis,
-                              )
+                              ),
+                              Icon(Icons.arrow_forward_ios,
+                                  color: Colors.white, size: 16),
                             ],
                           ),
-                        ),
-                      )
-                    ],
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 20),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(12.0),
+                      decoration: BoxDecoration(
+                          color: Colors.indigoAccent,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                                blurRadius: 20,
+                                offset: Offset(0, 0),
+                                color: Colors.indigoAccent)
+                          ]),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(12.0),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.indigo),
+                            child: Icon(
+                              Icons.speaker_notes,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Greetings',
+                            style: subTextStyle,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            user.greetings.toString(),
+                            style: mainTextStyle,
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'View all',
+                                style: contentTextStyle,
+                              ),
+                              Icon(Icons.arrow_forward_ios,
+                                  color: Colors.white, size: 16),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Text('Galleries (' + user.imgGalleries.length.toString() + ')', style: subTextStyle),
+              Icon(Icons.add, color: Colors.white),
+            ]),
+            SizedBox(height: 5),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.indigoAccent,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.indigoAccent,
+                          offset: Offset(0, 0),
+                          blurRadius: 10)
+                    ]),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 150,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: user.imgGalleries.map((img) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset('images/galleries/' + img),
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),

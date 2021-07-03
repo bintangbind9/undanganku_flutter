@@ -5,8 +5,14 @@ var mainTextStyle = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: Colors.white);
+var subTextStyle = TextStyle(
+    fontFamily: 'Quicksand',
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: Colors.white);
 var contentTextStyle =
     TextStyle(fontFamily: 'Quicksand', fontSize: 16, color: Colors.white);
+
 var contentDrawerTitleTextStyle = TextStyle(
     fontFamily: 'Quicksand',
     fontSize: 16,
@@ -22,7 +28,6 @@ var mainTextLogin = TextStyle(
   fontFamily: 'Quicksand',
   letterSpacing: 4,
 );
-
 var inputTextLogin = TextStyle(
   color: Colors.white,
   fontSize: 12,

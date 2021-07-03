@@ -8,6 +8,7 @@ class Users {
   int guests;
   int galleries;
   int greetings;
+  List<String> imgGalleries;
 
   Users ({
     required this.name,
@@ -19,6 +20,7 @@ class Users {
     required this.guests,
     required this.galleries,
     required this.greetings,
+    required this.imgGalleries,
   });
 }
 
@@ -31,8 +33,13 @@ var userList = [
     status: 'Starred',
     template: 'Elegant',
     guests: 35,
-    galleries: 7,
+    galleries: 3,
     greetings: 12,
+    imgGalleries: [
+      'bintang1.jpg',
+      'bintang2.jpg',
+      'bintang3.jpg',
+    ],
   ),
   Users(
     name: 'Bulan Putri',
@@ -42,7 +49,13 @@ var userList = [
     status: 'Free',
     template: 'Real Wedding',
     guests: 21,
-    galleries: 2,
+    galleries: 4,
     greetings: 5,
+    imgGalleries: [
+      'bulan1.jpg',
+      'bulan2.jpg',
+      'bulan3.jpg',
+      'bulan4.jpg',
+    ],
   ),
 ];
