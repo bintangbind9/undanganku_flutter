@@ -239,64 +239,66 @@ class MainScreen extends StatelessWidget {
           children: [
             Text('Template', style: subTextStyle),
             SizedBox(height: 5),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.indigoAccent,
-                        offset: Offset(0, 0),
-                        blurRadius: 10)
-                  ]),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      template = user.template;
-                      return MainTemplateScreen();
-                    })).then((value) {});
-                  },
-                  child: ClipRRect(
+            Center(
+              child: Container(
+                decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    child: Stack(
-                      children: [
-                        findTemplate(user.template)
-                            ? Image.asset(
-                                'images/templates/' + imageTemplate,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.asset(
-                                'images/mail-invitation.png',
-                                fit: BoxFit.cover,
-                              ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            padding: const EdgeInsets.all(8.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow: [
-                                  BoxShadow(
-                                      offset: Offset(0, 0),
-                                      blurRadius: 10,
-                                      color: Color.fromRGBO(38, 38, 38, 0.4))
-                                ]),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  user.template,
-                                  style: subTextStyle,
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.ellipsis,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.indigoAccent,
+                          offset: Offset(0, 0),
+                          blurRadius: 10)
+                    ]),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        template = user.template;
+                        return MainTemplateScreen();
+                      })).then((value) {});
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Stack(
+                        children: [
+                          findTemplate(user.template)
+                              ? Image.asset(
+                                  'images/templates/' + imageTemplate,
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.asset(
+                                  'images/mail-invitation.png',
+                                  fit: BoxFit.cover,
                                 ),
-                              ],
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: Offset(0, 0),
+                                        blurRadius: 10,
+                                        color: Color.fromRGBO(38, 38, 38, 0.4))
+                                  ]),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    user.template,
+                                    style: subTextStyle,
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -337,6 +339,7 @@ class MainScreen extends StatelessWidget {
                           Text(
                             'Guests',
                             style: subTextStyle,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(height: 10),
                           Text(
@@ -347,9 +350,14 @@ class MainScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                'View all',
-                                style: contentTextStyle,
+                              Flexible(
+                                child: Container(
+                                  child: Text(
+                                    'View all',
+                                    style: contentTextStyle,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
                               ),
                               Icon(Icons.arrow_forward_ios,
                                   color: Colors.white, size: 16),
@@ -390,6 +398,7 @@ class MainScreen extends StatelessWidget {
                           Text(
                             'Greetings',
                             style: subTextStyle,
+                            overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(height: 10),
                           Text(
@@ -400,9 +409,14 @@ class MainScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                'View all',
-                                style: contentTextStyle,
+                              Flexible(
+                                child: Container(
+                                  child: Text(
+                                    'View all',
+                                    style: contentTextStyle,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
                               ),
                               Icon(Icons.arrow_forward_ios,
                                   color: Colors.white, size: 16),
